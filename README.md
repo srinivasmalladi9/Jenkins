@@ -1,2 +1,1 @@
-# maven1
-new repo of maven
+Repo for Jenkins
