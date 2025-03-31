@@ -39,6 +39,7 @@ pipeline {
             steps {
                 echo 'Sonar Analysis is Going on...'
                 withSonarQubeEnv('sonarserver') {
+		sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
 		sh '''mvn sonar:sonar \\ 
 		 -Dsonar.projectKey=devops \\ 
 		 -Dsonar.host.url=http://54.87.128.170:9000 \\ 
