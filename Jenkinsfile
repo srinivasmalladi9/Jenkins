@@ -38,7 +38,7 @@ pipeline {
         stage('Sonar Analysis'){
             steps {
                 echo 'Sonar Analysis is Going on...'
-                withSonarQubeEnv('SonarCreds') {
+                withSonarQubeEnv('sonarscanner') {
 		sh '''
                 mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar
                 mvn sonar:sonar \\
