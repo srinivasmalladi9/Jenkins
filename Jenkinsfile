@@ -11,7 +11,6 @@ pipeline {
         WAR_FILE_PATH = '/var/lib/jenkins/workspace/cicd-test/target/mindcircuitbatch15d-1.0.0.war'
         TOMCAT_URL = 'http://54.234.187.139:8082/'
         NEXUS_URL = 'http://54.91.177.63:8081/'
-        
     }
     
     stages {
@@ -38,12 +37,12 @@ pipeline {
         }
         stage('Sonar Analysis'){
             steps {
-                echo 'Sonar Analysis is Going on'
+                echo 'Sonar Analysis is Going on...'
                 withSonarQubeEnv(credentialsId: 'SonarCreds', installationName: 'sonarscanner') {
-				mvn sonar:sonar \
-				  -Dsonar.projectKey=devops \
-                  -Dsonar.host.url=http://54.87.128.170:9000 \
-                  -Dsonar.login=cc34a066733b841dbaa231da2de2f6081dc8b356
+		sh '''mvn sonar:sonar \\ 
+		 -Dsonar.projectKey=devops \\ 
+		 -Dsonar.host.url=http://54.87.128.170:9000 \\ 
+		 -Dsonar.login=cc34a066733b841dbaa231da2de2f6081dc8b356'''
                 }
             }
         }
