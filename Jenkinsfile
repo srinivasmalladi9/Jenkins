@@ -38,9 +38,9 @@ pipeline {
         stage('Sonar Analysis'){
             steps {
                 echo 'Sonar Analysis is Going on...'
-                withSonarQubeEnv('sonarscanner') {
+                withSonarQubeEnv(credentialsId: 'cc34a066733b841dbaa231da2de2f6081dc8b356', installationName: 'sonarscanner') {
 		sh '''
-                mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar
+                mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.11.0.3922:sonar
                 mvn sonar:sonar \\
                 -Dsonar.projectKey=devops \\
                 -Dsonar.host.url=http://54.87.128.170:9000 \\
