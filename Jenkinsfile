@@ -38,12 +38,14 @@ pipeline {
         stage('Sonar Analysis'){
             steps {
                 echo 'Sonar Analysis is Going on...'
-                withSonarQubeEnv('sonarserver') {
-		sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
-		sh '''mvn sonar:sonar \\ 
-		 -Dsonar.projectKey=devops \\ 
-		 -Dsonar.host.url=http://54.87.128.170:9000 \\ 
-		 -Dsonar.login=cc34a066733b841dbaa231da2de2f6081dc8b356'''
+                withSonarQubeEnv('SonarCreds') {
+		sh '''
+                mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar
+                mvn sonar:sonar \\
+                -Dsonar.projectKey=devops \\
+                -Dsonar.host.url=http://54.87.128.170:9000 \\
+                -Dsonar.login=cc34a066733b841dbaa231da2de2f6081dc8b356
+            '''
                 }
             }
         }
