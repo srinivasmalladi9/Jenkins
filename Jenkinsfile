@@ -9,8 +9,8 @@ pipeline {
         GIT_HUB_BRANCH = 'main'
         CONTEXT_PATH = 'app'
         WAR_FILE_PATH = '/var/lib/jenkins/workspace/cicd-test/target/mindcircuitbatch15d-1.0.0.war'
-        TOMCAT_URL = 'http://3.95.61.192:8082/'
-        NEXUS_URL = 'http://34.203.10.10:8081/'
+        TOMCAT_URL = 'http://54.234.187.139:8082/'
+        NEXUS_URL = 'http://54.91.177.63:8081/'
         
     }
     
@@ -34,6 +34,17 @@ pipeline {
                 echo 'Continuous Build going on...'
                 sh 'mvn clean install'
                 echo 'Continuous Build Completed'
+            }
+        }
+        stage('Sonar Analysis'){
+            steps {
+                echo 'Sonar Analysis is Going on'
+                withSonarQubeEnv(credentialsId: 'SonarCreds', installationName: 'sonarscanner') {
+				mvn sonar:sonar \
+				  -Dsonar.projectKey=devops \
+                  -Dsonar.host.url=http://54.87.128.170:9000 \
+                  -Dsonar.login=cc34a066733b841dbaa231da2de2f6081dc8b356
+                }
             }
         }
         stage('Push to Artifactory') {
