@@ -50,7 +50,7 @@ pipeline {
         stage('Push to Artifactory') {
             steps {
                 echo 'Publishing to artifactory going on...'
-                nexusArtifactUploader artifacts: [[artifactId: 'mindcircuitbatch15d', classifier: '', file: "${WAR_FILE_PATH}", type: 'war']], credentialsId: 'NexusCreds', groupId: 'com.example', nexusUrl: "${ NEXUS_URL}", nexusVersion: 'nexus3', protocol: 'http', repository: 'test-war-practice', version: '1.0.0'
+		nexusArtifactUploader credentialsId: 'NexusCreds', groupId: 'com.example', nexusUrl: "${NEXUS_URL}", nexusVersion: 'nexus3', protocol: 'http', repository: 'test-war-practice', version: '1.1.0'    
                 echo 'Uploaded'
             }
         }
